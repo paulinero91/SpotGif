@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=Anton|Fjalla+One|Poppins|Quicksand" rel="stylesheet">
+<link  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="giphystyles.css">
+<link rel="stylesheet" type="text/css" href="styles.css">
+
+</head>
+
+<header>
+	<div class="slider"></div>
+	<div class="container">
+		<div id="login">
+			<a href="/login">Log in with Spotify</a>
+		</div>
+		<div id="loggedin">
+			<div id="user-profile">
+			</div>
+			<div id="oauth">
+			</div>
+
+		</div>
+	</div>
+</header>
+<body>
+	<div class= "top-section full-height">
+		<div class="logo-container">
+			<img src="spotgif_logo_wt.png" alt="spotgif logo" class="logo">
+			<!-- <h1 class="title top-section">SpotGif</h1> -->
+		</div>
+		<div class="intro-txt">Your tunes and gifs all in one place</div>
+
+
+
+
+		<div class="input-wrapper empty">
+		<!-- <div id='search-icon'>
+		&#9906;
+	</div> -->
+		<input type="search" placeholder="Search" class="query search-bar full-height"/>
+		</div>
+	</div>
+
+
+	<script id="user-profile-template" type="text/x-handlebars-template">
+
+		<img class="profilepic" src="{{images.0.url}}" />
+		<div id="username">{{display_name}}</div>
+	</script>
+
+
+	<script id="oauth-template" type="text/x-handlebars-template">
+		<h2>oAuth info</h2>
+		<dl class="dl-horizontal">
+			<dt>Access token</dt><dd class="text-overflow">{{access_token}}</dd>
+			<dt>Refresh token</dt><dd class="text-overflow">{{refresh_token}}></dd>
+		</dl>
+	</script>
+
+
+	<div id="artistPlaying"></div>
+
+	<div id="results"></div>
+
+	<script id="giphy-template" type="text/x-handlebars-template">
+		{{#each data}}
+		<div class="responsive">
+			<img src="{{images.downsized_still.url}}" data-gif="{{images.downsized.url}}" class="cover gif" alt="gif">
+
+		<div class="desc">	
+			<div class="textbox">
+				{{toUpperCase slug}}</div>
+			</div>
+		</div>
+			{{/each}}
+		</script>
+
+
+</body>
+<footer></footer>
+<script
+src="https://code.jquery.com/jquery-3.2.1.min.js"
+integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+crossorigin="anonymous"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
+
+<script src="giphyapp.js"></script>
+<script src="effects.js"></script>
+</html>
+
