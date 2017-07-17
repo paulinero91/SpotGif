@@ -72,6 +72,15 @@
 		query.text = $queryInput.val();
 		query.offset = Math.floor(Math.random() * 25);
 
+		if (key===13) {
+			$queryInput.blur()
+			$inputWrapper.addClass('active').removeClass('empty');
+
+				search(query)
+
+				return 
+		}
+
 		if (currentTimeout) {
 			clearTimeout(currentTimeout);
 			$loader.removeClass('done');
@@ -89,11 +98,14 @@
 
 				search(query)
 
+
+
 			} else {
 				$inputWrapper.removeClass('active').addClass('empty');
 				$button.removeClass('active');
 			}
-		}, 1000);
+		}, 3000);
+
 
 
 	});
@@ -298,27 +310,6 @@
 	};
 
 
-
-
-
-// 	//THESAURUS API 
-// 	var baseUrl = "http://api.wordnik.com/v4/word.json/";
-// 	var apiKey = "a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5"; //demo key from developer.wordnik.com
-// 	function getSynonyms (theWord, callback) {
-// 		var url = baseUrl + theWord + "/relatedWords?useCanonical=true&relationshipTypes=synonym&limitPerRelationshipType=100&api_key=" + apiKey;
-// 		var jxhr = $.ajax ({ 
-// 			url: url,
-// 			dataType: "text" , 
-// 			timeout: 30000,
-// 			success: function (response) {
-// 				//console.log(JSON.parse(response[0].words)) 
-// 			},
-// 			error: function(status){					
-// 				//console.log ("getSynonyms: url == " + url + ", error == " + JSON.stringify (status, undefined, 4));
-// 			}
-		    
-// 			}) 
-// 	}
 
 Handlebars.registerHelper('toUpperCase', function(str) { 
 	if(str.length==0){
