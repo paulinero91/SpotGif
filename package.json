@@ -1,6 +1,6 @@
 {
   "author": "Spotify",
-  "name": "web-api-auth-examples",
+  "name": "spotgif",
   "description": "Basic examples of the Spotify authorization flows through OAuth 2",
   "version": "0.0.1",
   "dependencies": {
@@ -9,5 +9,15 @@
     "querystring": "~0.2.0",
     "request": "~2.34.0",
     "spotify-web-api-node": "^2.4.0"
+  },
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "license": "ISC",
+  "engines": {
+    "node": "7.8.0"
   }
 }
