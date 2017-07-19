@@ -189,7 +189,17 @@
 	var access_token = params.access_token,
 		refresh_token = params.refresh_token,
 	        error = params.error;
+	        
 
+	    if(access_token){
+	    	$('.in').hide()
+	    	$('.out').show()
+	    }
+
+	    else{
+	    	$('.in').show()
+	    	$('.out').hide()
+	    }
 	
 	var searchAlbums = function (query) {
 		$.ajax({
@@ -323,10 +333,11 @@ Handlebars.registerHelper('toUpperCase', function(str) {
 
 //LOG IN
 
+
 $(".accountlog").click(function(e){
 
-	$(this).text("Logged In")
-	event.preventDefault();
+	// $(this).text("Logged In")
+	
 })
 
 
