@@ -321,4 +321,12 @@ Handlebars.registerHelper('toUpperCase', function(str) {
 })();
 
 
+//LOG IN
+
+$(".accountlog").click(function(e){
+
+	$(this).text("Logged In")
+	event.preventDefault();
+})
+
 
