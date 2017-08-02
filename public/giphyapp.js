@@ -1,13 +1,16 @@
 (function() {
 
-	/*GIHPY*/
+	/*GIHPY*/ //no authentication- ES6 syntax
 
+
+	//setting everything we need from the Giphy API
 	const PUBLIC_KEY = 'dc6zaTOxFJmzC';
 	const BASE_URL = '//api.giphy.com/v1/gifs/';
 	const ENDPOINT = 'search';
 	const LIMIT = 12;
 	const RATING = 'pg';
 
+	//sets variables to equal our HTML divs
 	let $queryInput = $('.query');
 	let $resultWrapper = $('.result');
 	let $loader = $('.loader');
@@ -20,6 +23,7 @@
 	let albumQuery; 	
 	let $playing; 
 
+	//setting variables to HTML divs again and declaring global variables
 	var templateSource = document.getElementById('giphy-template').innerHTML,
 	    template = Handlebars.compile(templateSource),
 	    resultsPlaceholder = document.getElementById('results'),
@@ -27,14 +31,15 @@
 	    audioObject = null;
 
 
-	let query = {
+	//creates an object that contains all the necessary functions for api call to Giphy
+	let query = { 
 		text: null,
 		offset: 0,
-		request() {
+		request() { //declares function that returns our api URL
 			console.log(`${BASE_URL}${ENDPOINT}?q=${this.text}&limit=${LIMIT}&rating=${RATING}&offset=${this.offset}&api_key=${PUBLIC_KEY}`)
 			return `${BASE_URL}${ENDPOINT}?q=${this.text}&limit=${LIMIT}&rating=${RATING}&offset=${this.offset}&api_key=${PUBLIC_KEY}`;
 		},
-		handleData(data){
+		handleData(data){ //declares function that converts data to HTML
 				let results = data.data;
 				console.log(data)
 					
@@ -52,12 +57,12 @@
 		},
 
 
-		fetch(callback) {
+		fetch(callback) { //just our ajax call
 
 			return $.ajax({
-				url : this.request(),
+				url : this.request(), //gets URL from line 39
 				type: 'GET',
-				success : this.handleData,
+				success : this.handleData, //gets function from line 42
 				fail: this.failData
 			})
 
@@ -66,13 +71,14 @@
 	}
 
 
-
+//The Beginning
+	//whatever the user types into search bar
 	$queryInput.on('keyup', e => {
 		let key = e.which || e.keyCode;
 		query.text = $queryInput.val();
 		query.offset = Math.floor(Math.random() * 25);
 
-		if (key===13) {
+		if (key===13) { //when user presses enter key
 			$queryInput.blur()
 			$inputWrapper.addClass('active').removeClass('empty');
 
@@ -81,12 +87,12 @@
 				return 
 		}
 
-		if (currentTimeout) {
+		if (currentTimeout) { //if user types a key, the timer resets
 			clearTimeout(currentTimeout);
 			$loader.removeClass('done');
 		}
 
-		currentTimeout = setTimeout(() => {
+		currentTimeout = setTimeout(() => { //after a certain amount of seconds, search automatically pushes through
 			currentTimeout = null;
 			$('.gif').addClass('hidden');
 
@@ -110,11 +116,13 @@
 
 	});
 
-	function search(query){
+	function search(query){ 
 
+
+		//fetching data from Giphy.com
 		console.log('searching')
 
-		query.fetch(url => {
+		query.fetch(url => { //refers to object above and makes API call on line 69
 					if (url.length) {
 						//$resultWrapper.html(buildImg(url));
 
@@ -134,15 +142,15 @@
 					//console.log('now search '+query.text)
 					oldArtist = $queryInput.val();
 					$('#artistPlaying').text('') 
-					searchAlbums(query.text) 
+					searchAlbums(query.text) //WE CONNECT TO SPOTIFY CODE THROUGH WHAT USER SEARCHED FOR
 					}
 				);
 
 	}
 
-	$('body').on('click', '.gif', function (e) { //Plays GIF
+	$('body').on('click', '.gif', function (e) { //Plays GIF on click
 		this.src = this.getAttribute('data-gif')
-		playSong(e);
+		playSong(e); //CONNECT TO SPOTIFY CODE WHEN USER CLICKS ON GIF TO PLAY SONG
 	});
 
 	$('.button').on('click', function (e){
@@ -157,21 +165,11 @@
 
 
 
+	/*SPOTIFY*/ //requires authentication - ES5 syntax
 
 
 
-
-
-
-
-	/*SPOTIFY*/
-
-
-
-
-
-
-	function getHashParams() {
+	function getHashParams() { //necessary for Spotify authentication- copy and pasted most of it
 		var hashParams = {};
 		var e, r = /([^&;=]+)=?([^&;]*)/g,
 		q = window.location.hash.substring(1);
@@ -200,15 +198,17 @@
 	    	$('.in').show()
 	    	$('.out').hide()
 	    }
+
+
 	
-	var searchAlbums = function (query) {
+	var searchAlbums = function (query) {//RECEIVING QUERY INPUT FROM GIPHY SEARCH ABOVE
 		$.ajax({
 			url: 'https://api.spotify.com/v1/search',
 			headers: {
 				'Authorization': 'Bearer ' + access_token
 			},
 
-			data: {
+			data: { //search albums for keyword
 				q: query,
 				type: 'album'
 			},
@@ -216,11 +216,11 @@
 				//resultsPlaceholder.innerHTML = template(response);
 				console.log(response)
 		       		albumQuery = response; 
-				addAlbumIds(response); 
+				addAlbumIds(response); //adds album IDs to each Gif
 			}
 		});
 	};
-	var fetchTracks = function (albumId, callback) {
+	var fetchTracks = function (albumId, callback) { //make ajax call using data-album-id to Spotify.com
 		$.ajax({
 			url: 'https://api.spotify.com/v1/albums/' + albumId,
 			headers: {
@@ -237,7 +237,7 @@
 		});
 	};
 
-	function playSong(e){
+	function playSong(e){ 
 		//console.log(e);
 		var target = e.target;
 		if (target !== null && target.classList.contains('cover')) {
@@ -247,7 +247,7 @@
 				if (audioObject) {
 					audioObject.pause();
 				}
-				fetchTracks(target.getAttribute('data-album-id'), function (data) {
+				fetchTracks(target.getAttribute('data-album-id'), function (data) { //gets albumID of giphy clicked on, and then fetch album tracks to play song
 					////console.log(data)
 					var preview_url;
 					for(var i=0; i<	data.tracks.items.length; i++){		
@@ -259,8 +259,8 @@
 					console.log(i);
 					
 					
-					audioObject = new Audio(data.tracks.items[0].preview_url);
-					audioObject.play();
+					audioObject = new Audio(data.tracks.items[0].preview_url); //create a new audio object using the data returned from Spotify.com
+					audioObject.play(); //play the song!!!
 					target.classList.add(playingCssClass);
 					audioObject.addEventListener('ended', function () {
 						target.classList.remove(playingCssClass);
@@ -273,13 +273,15 @@
 		}
 	}
 
-	function addAlbumIds(response){
+
+
+	function addAlbumIds(response){ 
 		//console.log($('.gif'))
-		$('.gif').each(function(i){
+		$('.gif').each(function(i){ //adds Album ID to each GIF so that a different song plays for every image
 			//console.log(this,i) 
 			this.setAttribute('data-album-id',response.albums.items[i].id)
 		})
-
+		//Search has finished!!!
 	}
 
 
@@ -321,7 +323,7 @@
 
 
 
-Handlebars.registerHelper('toUpperCase', function(str) { 
+Handlebars.registerHelper('toUpperCase', function(str) { //made captions of images to uppercase
 	if(str.length==0){
 		return "untitled"
 	}
