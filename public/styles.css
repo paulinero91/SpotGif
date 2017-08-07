@@ -284,16 +284,7 @@ img {
 
 }
 
-/*#logo{
 
-  margin: 20px;
-  float: left;
-  width: 200px;
-  height: 40px;
-  background: url(../img/logo.png) no-repeat center;
-  display: block;
-
-}*/
 
 
 
@@ -312,21 +303,13 @@ section {
 
 }
 
-/*h1 {
-
-  font-size: 2em;
-  color: #2262AD;
-  line-height: 1.15em;
-  margin: 20px 0 ;
-
+.done{
+  display: none;
 }
 
-p {
-
-  line-height: 1.45em;
-  margin-bottom: 20px;
-
-}*/
+.loader{
+  color: white;
+}
 
 /*MEDIA QUERY*/
 

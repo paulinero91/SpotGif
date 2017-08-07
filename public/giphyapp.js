@@ -44,7 +44,10 @@
 				console.log(data)
 					
 				if (results.length) {
-					resultsPlaceholder.innerHTML = template(data);
+					resultsPlaceholder.innerHTML = template(data); //puts gifs into HTML
+
+					$('.loader').addClass('done');
+
 					//callback(url);
 				} else {
 					//callback('');
@@ -89,15 +92,14 @@
 
 		if (currentTimeout) { //if user types a key, the timer resets
 			clearTimeout(currentTimeout);
-			$loader.removeClass('done');
+			
 		}
 
 		currentTimeout = setTimeout(() => { //after a certain amount of seconds, search automatically pushes through
 			currentTimeout = null;
 			$('.gif').addClass('hidden');
-
 			$('.top-section, .search-bar').removeClass("full-height")
-
+			$loader.removeClass('done');
 			if (query.text && query.text.length) {
 
 				$inputWrapper.addClass('active').removeClass('empty');
@@ -110,11 +112,13 @@
 				$inputWrapper.removeClass('active').addClass('empty');
 				$button.removeClass('active');
 			}
-		}, 3000);
+		}, 1000);
 
 
 
 	});
+
+
 
 	function search(query){ 
 
@@ -133,12 +137,13 @@
 						$button.removeClass('active');
 					}
 
-					$loader.addClass('done');
+			
 					currentTimeout = setTimeout(() => {
 						$('.hidden').toggleClass('hidden');
 					}, 1000);
 				})
 				.then(function(){
+					
 					//console.log('now search '+query.text)
 					oldArtist = $queryInput.val();
 					$('#artistPlaying').text('') 
