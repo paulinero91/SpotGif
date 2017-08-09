@@ -164,6 +164,8 @@ div.desc {
 .intro-txt{
   color: white;
   font-size: 14px;
+  width: 55%;
+  margin: auto;
 }
 
 
