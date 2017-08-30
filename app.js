@@ -14,6 +14,7 @@ var cookieParser = require('cookie-parser');
 
 var client_id = '23811d2b8d704cb2af2c134ce28e3304'; // Your client id
 var client_secret = '67c2965cca9748f39cbdd62694b9d631'; // Your secret
+// var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
 var redirect_uri = 'https://infinite-woodland-41509.herokuapp.com/callback'; // Your redirect uri
 
 

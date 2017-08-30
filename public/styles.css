@@ -19,6 +19,11 @@ header{
   top: 0;
 }
 
+#login{
+  text-align: right;
+  margin-right: 30px;
+}
+
 .top-section, .logo-container{ 
  /* background-color: #019AAA;*/
 }
@@ -55,52 +60,17 @@ header{
 }
 
 
-/*@media screen and (max-width: 500px){
-  .logo-container img{
-    width: 90%;
-  }
-}*/
-
-/*header, footer{
-  width: 100%;
-  height: 50px;
-  background-color: #019AAA;
-}
-*/
-
-/*header:hover .slider{
-  width: 100%; 
-}
-
-.slider{
-  height: 5px;
-  background-color: #59a8b1;
-  width: 0%;
-}
-
-.slider.animate{
-  width: 100%;
-}
-
-.slider:hover{
-  width: 100%;
-}
-
-footer{
-  position: fixed;
-  bottom: 0;
-  border-top: 3px solid pink;
-}
-*/
-
 body{
   font-family: 'Poppins', sans-serif;
   background-color: #2B2B35;
-  /*font-family: 'Fjalla One', sans-serif;
-  font-family: 'Anton', sans-serif;
-  font-family: 'Quicksand', sans-serif;*/
 }
 
+.intro-txt{
+  font-family: 'Open Sans Condensed', sans-serif;
+  /*font-family: 'Archivo Narrow', sans-serif;*/
+  font-size: 16px;
+  color: white;
+}
 /*#search-icon{
   color: #2B2B35;
   font-size: 24px;
@@ -174,7 +144,6 @@ div.desc {
   margin-top: 40px;
   margin-bottom: 40px;
   margin-right: 0;
-  
   background-color: white;
   color: #2B2B35;
 }
@@ -211,19 +180,7 @@ div.desc {
     margin-bottom: 20px;
 }
 
-/*.cover {
-    width: 250px;
-    height: 250px;
-    display: inline-block;
-    background-size: cover;
-    margin: 10px;
-}*/
 
-/*.cover{
-  display: inline-block;
-  width: 33%;
-  box-sizing: border-box;
-}*/
 .cover:hover {
     cursor: pointer;
     border: 2px solid white;
@@ -236,19 +193,6 @@ div.desc {
   color: grey;
 }
 
-/*.cover:click{
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-}*/
-
-/*@media (max-width: 700px){
-  .cover{
-    width: 85%;
-  }
-}*/
 
 .results{
   border: 1px solid green;
@@ -262,22 +206,18 @@ div.desc {
 }
 
 
-
-
-
-
-
 /*RESET*/
 /*html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {margin:0; padding:0; border:0; outline:0; font-size:100%; vertical-align:baseline; background:transparent;} body {line-height: 1;}ol, ul{list-style:none;} blockquote, q{quotes:none;} blockquote:before, blockquote:after, q:before, q:after{content:'';content:none;} :focus{outline:0;} ins{text-decoration:none;} del{text-decoration:line-through;} table{border-collapse:collapse; border-spacing:0;}*/
 
 /*MAIN*/
 
 a {
-
   color: white;
-  text-decoration: none;
+ /* background-color: #1DB954;*/
+  text-decoration: underline;
   font-weight: bold;
-
+  /*position: absolute;
+  text-align: right;*/
 }
 
 img {
@@ -320,12 +260,3 @@ section {
 	color:white;
 }
 
-/*.responsive:hover{
-  overflow: visible;
-}*/
-/*.responsive img{
-  transition: all 1s;
-}*/
-/*.responsive img:hover{
-  transform: scale(1.5);
-}*/
